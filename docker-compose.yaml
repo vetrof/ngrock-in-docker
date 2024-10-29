@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    command: >
+      sh -c "ngrok http --domain=${NGROK_DOMAIN} 8000 --log=stdout & python manage.py runserver 0.0.0.0:8000"
+    # sh -c "ngrok http 8000 --log=stdout & python manage.py runserver 0.0.0.0:8000"  # Для использования с рандомным доменом
+    ports:
+      - "8000:8000"
+      - "4040:4040"
+    env_file:
+      - .env
+
