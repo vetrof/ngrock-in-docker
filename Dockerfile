@@ -22,6 +22,6 @@ COPY . .
 
 # Авторизация ngrok с использованием вашего токена
 # Загружаем переменные окружения из .env файла
-RUN export $(cat .env | xargs) && \
-    ngrok config add-authtoken $NGROK_AUTHTOKEN
+RUN export $(grep -v '^#' .env | xargs) && ngrok config add-authtoken $NGROK_AUTHTOKEN
+
 
